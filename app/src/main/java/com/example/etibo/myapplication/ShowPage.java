@@ -3,12 +3,12 @@ package com.example.etibo.myapplication;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.webkit.WebView;
 import android.widget.TextView;
 
 public class ShowPage extends AppCompatActivity {
     private static ShowPage ins;
     private SmsReceiver smsReceiver;
+    private String[] mapsParameters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,10 @@ public class ShowPage extends AppCompatActivity {
         return ins;
     }
 
+    public void receive(String sms) {
+        //mapsParameters = sms.split("^");
+        updateTheTextView(sms);
+    }
     public void updateTheTextView(final String t) {
         ShowPage.this.runOnUiThread(new Runnable() {
             public void run() {
@@ -48,7 +52,7 @@ public class ShowPage extends AppCompatActivity {
             }
         });
     }
-
+/*
     public void updatePageView(final String code) {
         ShowPage.this.runOnUiThread(new Runnable() {
             public void run() {
@@ -57,5 +61,5 @@ public class ShowPage extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }

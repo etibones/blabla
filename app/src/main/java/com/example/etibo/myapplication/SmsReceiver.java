@@ -16,7 +16,7 @@ public class SmsReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         Bundle bundle = intent.getExtras();
-        SmsMessage[] msgs = null;
+        SmsMessage[] msgs;
         String str = "";
 /*
         if (bundle != null) {
@@ -42,29 +42,21 @@ public class SmsReceiver extends BroadcastReceiver {
 
             // For every SMS message received (although multipart is not supported with binary)
             for (int i=0; i<msgs.length; i++) {
-                byte[] data = null;
+                byte[] data;
 
                 msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
-
-                // Return the User Data section minus the
-                // User Data Header (UDH) (if there is any UDH at all)
                 data = msgs[i].getUserData();
+                if (msgs[i].getOriginatingAddress().equalsIgnoreCase("8198068706")) {
 
-                // Generally you can do away with this for loop
-                // You'll just need the next for loop
-                for (int index=0; index < data.length; index++) {
-                    str += Byte.toString(data[index]);
+                    for (int index=0; index < data.length; index++) {
+                        str += Character.toString((char) data[index]);
+                    }
+
+                    str += "\n";
                 }
-
-
-                for (int index=0; index < data.length; index++) {
-                    str += Character.toString((char) data[index]);
-                }
-
-                str += "\n";
             }
             try {
-                ShowPage.getInstance().updateTheTextView(str);
+                ShowPage.getInstance().receive(str);
                 //ShowPage.getInstance().updateTextView(str);
             } catch (Exception e) {
 

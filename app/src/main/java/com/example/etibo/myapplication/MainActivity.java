@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     public void goToSend(View view) {
         Intent intent = new Intent(this, ShowPage2.class);
         startActivity(intent);
-
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

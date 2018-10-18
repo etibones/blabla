@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="traveling_prompt">Choose a traveling method</string>
+
+    <string-array name="traveling_arrays">
+        <item>Walk</item>
+        <item>Bike</item>
+        <item>Car</item>
+        <item>Bus</item>
+    </string-array>
 </resources>
